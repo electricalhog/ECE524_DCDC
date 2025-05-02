@@ -1,0 +1,49 @@
+// VerilogA for DC-DC_Converter, PWM_Generator, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module PWM_Generator(
+	input  electrical vin,   // Analog input voltage
+    output electrical vout   // PWM digital output
+);
+
+    // Parameters
+    parameter real v_low = 0.65;        // Lower bound of input voltage
+    parameter real v_high = 3.3;       // Upper bound of input voltage
+    parameter real freq = 2e6;         // Frequency in Hz (default: 1 kHz)
+
+    // Internal variables
+    real period;
+    real duty_cycle;
+    real t_start;
+    real t_now;
+    real time_in_period;
+
+    analog begin
+        // Compute the period from frequency
+        period = 1.0 / freq;
+
+        // Get current simulation time
+        t_now = $abstime;
+
+        // Reset reference start time at t = 0
+        if (t_now == 0.0) begin
+            t_start = 0.0;
+        end
+
+        // Time within current period
+        time_in_period = (t_now - t_start) % period;
+
+        // Clip and scale input voltage to compute duty cycle
+        duty_cycle = (V(vin) - v_low) / (v_high - v_low);
+        if (duty_cycle < 0.0) duty_cycle = 0.0;
+        if (duty_cycle > 1.0) duty_cycle = 1.0;
+
+        // Output PWM signal
+        V(vout) <+ transition(
+            (time_in_period < duty_cycle * period) ? 0.0 : 3.3,
+            50n, 50n
+        );
+    end
+endmodule

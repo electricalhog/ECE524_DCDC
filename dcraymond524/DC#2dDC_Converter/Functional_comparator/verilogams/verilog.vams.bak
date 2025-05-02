@@ -1,0 +1,25 @@
+//Verilog-AMS HDL for "DC-DC_Converter", "Functional_comparator" "verilogams"
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module Functional_comparator (out, in_p, in_n);
+	output out;
+	electrical out;
+	input in_p, in_n;
+	electrical in_p, in_n;
+
+	parameter real v_high = 3.3; // Output high voltage
+	parameter real v_low = 0.0; // Output low voltage
+	parameter real vth = 0.0; // Hysterisis threshold offset
+
+	real vdiff;
+	
+	analog begin
+		vdiff = V(in_p)-V(in_n);
+		if (vdiff > vth)
+			V(out) <+ v_high;
+		else if (vdiff < -vth)
+			V(out) <+ v_low;
+	end
+endmodule

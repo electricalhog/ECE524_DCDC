@@ -1,0 +1,25 @@
+// VerilogA for DC-DC_Converter, Analogtest, veriloga
+
+`include "disciplines.vams"
+
+module Analogtest(out, in_p, in_n);
+  output out;
+  electrical out;
+  input in_p, in_n;
+  electrical in_p, in_n;
+
+  parameter real v_high = 5.0;   // High output voltage
+  parameter real v_low = 0.0;    // Low output voltage
+  parameter real vth = 0.0;      // Hysteresis threshold offset
+
+  real vdiff;
+
+  analog begin
+    vdiff = V(in_p) - V(in_n);
+    if (vdiff > vth)
+      V(out) <+ v_high;
+    else if (vdiff < -vth)
+      V(out) <+ v_low;
+    // retain current state when within hysteresis band
+  end
+endmodule

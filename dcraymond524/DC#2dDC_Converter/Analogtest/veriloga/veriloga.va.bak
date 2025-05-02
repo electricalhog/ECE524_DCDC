@@ -1,0 +1,9 @@
+// VerilogA for DC-DC_Converter, Analogtest, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module Analogtest;
+
+
+endmodule

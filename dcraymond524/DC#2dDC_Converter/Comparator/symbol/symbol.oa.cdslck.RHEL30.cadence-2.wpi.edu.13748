@@ -6,11 +6,11 @@
 LockStakeVersion               1.1
 LoginName                      dcraymond
 HostName                       cadence-2.wpi.edu
-ProcessIdentifier              15634
-ProcessCreationTime_UTC        1746195379
-ProcessCreationTime_Readable   Fri May  2 10:16:19 2025 EDT
+ProcessIdentifier              13748
+ProcessCreationTime_UTC        1744981121
+ProcessCreationTime_Readable   Fri Apr 18 08:58:41 2025 EDT
 AppIdentifier                  OA File System Design Manager
 OSType                         unix
 ReasonForPlacingEditLock       OpenAccess edit lock
-FilePathUsedToEditLock         /home/dcraymond/dcraymond524/DC#2dDC_Converter/Comparator_tb/schematic/sch.oa.cdslck
-TimeEditLocked                 Fri May  2 10:40:11 2025 EDT
+FilePathUsedToEditLock         /home/dcraymond/dcraymond524/DC#2dDC_Converter/Comparator/symbol/symbol.oa.cdslck
+TimeEditLocked                 Fri Apr 18 09:23:29 2025 EDT
