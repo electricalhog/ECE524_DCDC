@@ -11,7 +11,7 @@ module PWM_Generator(
     // Parameters
     parameter real v_low = 0.65;        // Lower bound of input voltage
     parameter real v_high = 3.3;       // Upper bound of input voltage
-    parameter real freq = 2e6;         // Frequency in Hz
+    parameter real freq = 2e6;         // Frequency in Hz (default: 1 kHz)
 
     // Internal variables
     real period;
